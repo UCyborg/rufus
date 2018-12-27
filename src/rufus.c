@@ -2757,7 +2757,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 {
 	const char* rufus_loc = "rufus.loc";
-	wchar_t kernel32_path[MAX_PATH];
+	//wchar_t kernel32_path[MAX_PATH];
 	int i, opt, option_index = 0, argc = 0, si = 0, lcid = GetUserDefaultUILanguage();
 	int wait_for_mutex = 0;
 	FILE* fd;
@@ -2769,7 +2769,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	char *tmp, *locale_name = NULL, **argv = NULL;
 	wchar_t **wenv, **wargv;
 	PF_TYPE_DECL(CDECL, int, __wgetmainargs, (int*, wchar_t***, wchar_t***, int, int*));
-	PF_TYPE_DECL(WINAPI, BOOL, SetDefaultDllDirectories, (DWORD));
+	//PF_TYPE_DECL(WINAPI, BOOL, SetDefaultDllDirectories, (DWORD));
 	HANDLE mutex = NULL, hogmutex = NULL, hFile = NULL;
 	HWND hDlg = NULL;
 	HDC hDC;
@@ -2790,7 +2790,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// indicates that "If the parameter is an empty string (""), the call removes the current
 	// directory from the default DLL search order"? Yeah, that doesn't work. At all.
 	// Still, we invoke it, for platforms where the following call might not work...
-	SetDllDirectoryA("");
+	//SetDllDirectoryA("");
 
 	// Also, even if you use SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32), you're
 	// still going to be brought down if you link to wininet.lib or dwmapi.lib, as these two
@@ -2800,7 +2800,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// generic URLs around and deliberately refusing to practice *responsible disclosure*...
 	// Finally, we need to perform the whole gymkhana below, where we can't call on
 	// SetDefaultDllDirectories() directly, because Windows 7 doesn't have the API exposed.
-	GetSystemDirectoryW(kernel32_path, ARRAYSIZE(kernel32_path));
+	/*GetSystemDirectoryW(kernel32_path, ARRAYSIZE(kernel32_path));
 	wcsncat(kernel32_path, L"\\kernel32.dll", ARRAYSIZE(kernel32_path) - wcslen(kernel32_path) - 1);
 	// NB: Because kernel32 should already be loaded, what we do above to ensure that we
 	// (re)pick the system one is mostly unnecessary. But since for a hammer everything is a
@@ -2809,7 +2809,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	pfSetDefaultDllDirectories = (SetDefaultDllDirectories_t)
 		GetProcAddress(LoadLibraryW(kernel32_path), "SetDefaultDllDirectories");
 	if (pfSetDefaultDllDirectories != NULL)
-		pfSetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32);
+		pfSetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32);*/
 
 	uprintf("*** " APPLICATION_NAME " init ***\n");
 
