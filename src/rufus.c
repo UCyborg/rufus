@@ -3013,7 +3013,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	GetWindowsVersion();
 
 	// ...and nothing of value was lost
-	if (nWindowsVersion < WINDOWS_7) {
+	if (nWindowsVersion < WINDOWS_VISTA) {
 		// Load the translation before we print the error
 		get_loc_data_file(loc_file, selected_locale);
 		right_to_left_mode = ((selected_locale->ctrl_id) & LOC_RIGHT_TO_LEFT);
